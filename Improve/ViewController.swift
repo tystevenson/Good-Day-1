@@ -12,43 +12,48 @@ class ViewController: UIViewController {
 
     // Challenge Label
     @IBOutlet weak var challenge: UILabel!
-    // Quote Label
-    @IBOutlet weak var quote: UILabel!
+    // Description Label
+    @IBOutlet weak var challengeDescription: UILabel!
+    
+    struct Challenge {
+        var name: String
+        var description: String
+    }
     
     
     //Challenges, Quotes and Labels
-    var challenges = ["Make your bed", "Clean your room", "Compliment a stranger", "Drink 8 cups of water", "Go for a walk", "Go for a jog", "Organize your desk", "Don't procrastinate", "Call a friend", "Create a todo list", "Work on a skill", "Work on a project", "Meditate for 5 minutes", "Write down something you're grateful for", "Read for 15 minutes", "Do 10 push ups", "Watch a TED Talk", "Learn a new word", "Read an article", "Eat a fruit", "Eat a vegetable", "Teach someone something", "Do 25 situps", "Think of something positive", "Start a budget", "Talk to a stranger", "Face a fear", "Tell someone you love them", "Make your own lunch", "Stay off social media for 1 hour", "Do something kind", "Spend 30 minutes focusing on a task"]
+    
     var backgrounds = [""]
-    var quotes = ["“All our dreams can come true, if we have the courage to pursue them.” – Walt Disney", "“The secret of getting ahead is getting started.” – Mark Twain", "“I’ve missed more than 9,000 shots in my career. I’ve lost almost 300 games. 26 times I’ve been trusted to take the game winning shot and missed. I’ve failed over and over and over again in my life and that is why I succeed.” – Michael Jordan", "“It’s hard to beat a person who never gives up.” – Babe Ruth"]
+    var challenges = [Challenge(name: "Learn a new word", description: "With more than a million words in the English language, there’s got to be one you don’t know!"), Challenge(name: "Tidy your workspace", description: "From empty cups to candy wrappers everything seems to end up on our desks. Decluttering can help you focus on the task at hand!")
+
+
+]
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+
     }
 
     @IBAction func onButtonTap(_ sender: Any) {
         changeChallenge()
-        changeQuote()
         didTapButton()
     }
     
     // Functions
+    
+
     func changeChallenge() {
         if let newChallenge = challenges.randomElement() {
-            challenge.text = newChallenge
+            challenge.text = newChallenge.name
+            challengeDescription.text = newChallenge.description
         }
     }
     
-    func changeQuote() {
-        if let newQuote = quotes.randomElement() {
-            quote.text = newQuote
-        }
-    }
-
-    
-    
+    //
     @objc private func didTapButton() {
+    
         
         let userDefaults = UserDefaults(suiteName: "group.com.haraki.goodday")
         
@@ -58,9 +63,10 @@ class ViewController: UIViewController {
         
         userDefaults?.setValue(challengeText, forKey: "challenge")
         WidgetCenter.shared.reloadAllTimelines()
+        
+      
+    }
+        
+    
     }
     
-    
-}
-
-

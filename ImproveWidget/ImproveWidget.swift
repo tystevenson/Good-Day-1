@@ -52,16 +52,8 @@ struct My_WidgetEntryView : View {
 
     var body: some View {
         ZStack(alignment: .leading) {
-            Image("bg")
-                .resizable()
-                .aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
-                .clipped()
-              
-                
-            
             Text(entry.challengeText)
                 .font(.system(size: 24, weight: .semibold, design: .default))
-                .foregroundColor(.white)
                 .padding(50)
         }
  
